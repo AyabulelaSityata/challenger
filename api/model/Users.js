@@ -1,4 +1,6 @@
 const db = require("../config");
+const {hash, compare, hashSync} = require('bcrypt')
+const {createToken} = require('../middleware/Authentication')
 
 class Users {
   fetchUsers(req, res) {
@@ -26,7 +28,23 @@ class Users {
       });
     });
   }
-  register(req, res) {}
+  async register(req, res) {
+    const data = req.body
+    // encrypt password
+    data.userPass = await hash(data.userPass, 15)
+    // Payload
+    const user = {
+        emailAdd: data.emailAdd,
+        userPass: data.userPass
+    }
+    // Query
+    const query = `INSERT INTO Users SET ?;`
+    
+    db.query(query,
+        [data],
+        (err)=>,)
+
+  }
   login(req, res) {}
   deleteUser(req, res) {
     const query = `
