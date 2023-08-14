@@ -6,3 +6,4 @@ const BookAuthors = require('./BookAuthors')
 module.exports = {
     users: new Users(),
 }
+
