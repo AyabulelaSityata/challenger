@@ -29,6 +29,10 @@ routes.delete('/user/:id', (req, res) => {
     users.deleteUser(req, res)
 })
 
+routes.post('/login', bodyParser.json(), (req, res)=>{
+    users.login(req, res)
+})
+
 module.exports = {
     express,
     routes
