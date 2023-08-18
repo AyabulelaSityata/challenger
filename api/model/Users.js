@@ -45,11 +45,6 @@ class Users {
         (err)=> {
             if(err) throw err
             let token = createToken(Users)
-            res.cookie("ActualUser", token,
-            {
-                maxAge: 3600000,
-                httpOnly: true
-            });
             res.json({
                 msg: "You are now registered."
             })
@@ -82,12 +77,6 @@ class Users {
                   createToken({
                       emailAdd,
                       userPass
-                  })
-                  // Save a token
-                  res.cookie("LegitUser",
-                  token, {
-                      maxAge: 3600000,
-                      httpOnly: true
                   })
                   if(cResult) {
                       res.json({
